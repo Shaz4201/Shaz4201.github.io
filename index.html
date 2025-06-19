@@ -3,22 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LuxePixel Studios – Coming Soon</title>
-  <meta name="description"
-        content="LuxePixel Studios is a UK-based creative studio crafting beautiful digital experiences—sign up now to be first in line for our launch." />
+  <title>LuxePixel Studios – Premium Web Design &amp; Creative Innovation</title>
+  <meta name="description" content="LuxePixel Studios is almost live. Be the first to experience premium design, digital creativity, and innovation." />
   <link rel="canonical" href="https://luxepixelstudios.com/" />
 
+  <!-- Google Analytics (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YL17025JEB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-YL17025JEB');
+  </script>
+
+  <!-- Structured Data: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "LuxePixel Studios",
+    "url": "https://luxepixelstudios.com",
+    "logo": "https://luxepixelstudios.com/my-favicon/favicon-96x96.png",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "contact@luxepixelstudios.com",
+      "contactType": "customer service",
+      "availableLanguage": "en"
+    }
+  }
+  </script>
+
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
+    /* Reset & Base */
+    * { margin:0; padding:0; box-sizing:border-box }
     html, body {
       height:100%; width:100%;
-      font-family:-apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", sans-serif;
-      background:#f2f2f7; overflow:hidden; color:#1c1c1e;
+      font-family:-apple-system, BlinkMacSystemFont, "SF Pro Text","Helvetica Neue",sans-serif;
+      background:#f2f2f7; color:#1c1c1e; overflow-x:hidden;
     }
 
-    /* BACKGROUND & RIPPLE */
+    /* Background Layers */
     .bg-image {
-      position:fixed; top:0; left:0; width:100vw; height:100vh;
+      position:fixed; top:0; left:0; width:100%; height:100%;
       background:url("https://i.imgur.com/qb6HJXqm.jpg") center/cover no-repeat;
       filter:blur(20px); z-index:0;
     }
@@ -26,185 +52,172 @@
       position:fixed; top:0; left:0; width:200%; height:200%;
       background:radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
       background-size:50px 50px;
-      animation:ripple 30s linear infinite;
-      z-index:1; opacity:0.4;
+      animation:ripple 30s linear infinite; opacity:0.4; z-index:1;
     }
-    @keyframes ripple {
-      from {transform:translate(0,0);} to {transform:translate(100px,100px);}
-    }
+    @keyframes ripple { from{transform:translate(0)} to{transform:translate(100px,100px)} }
 
-    /* GLASS PANEL */
-    .glass {
+    /* Container & Card */
+    .container {
       position:relative; z-index:2;
-      background:rgba(255,255,255,0.15);
+      display:flex; align-items:center; justify-content:center;
+      height:100vh; padding:1rem;
+    }
+    .card {
+      background:rgba(255,255,255,0.6);
       backdrop-filter:blur(30px); -webkit-backdrop-filter:blur(30px);
-      border-radius:30px;
-      box-shadow:0 20px 60px rgba(0,0,0,0.15);
-      padding:2.5rem 2rem;
-      max-width:400px; width:90%;
-      text-align:center;
-      margin:auto; top:50%; transform:translateY(-50%);
-      overflow:hidden;
+      border-radius:24px; box-shadow:0 8px 32px rgba(0,0,0,0.12);
+      width:100%; max-width:360px; overflow:hidden;
+      transition:max-height .5s ease, padding-bottom .5s ease;
+      max-height:900px; padding-bottom:1rem;
     }
-    .glass::before {
-      content:""; position:absolute;
-      top:-100%; left:-100%; width:200%; height:200%;
-      background:linear-gradient(120deg, rgba(255,255,255,0.08), rgba(255,255,255,0));
-      transform:rotate(25deg);
-      animation:shimmer 5s infinite;
-      pointer-events:none;
-    }
-    @keyframes shimmer {
-      0% {transform:translate(-100%,-100%) rotate(25deg);}
-      100% {transform:translate(100%,100%) rotate(25deg);}
-    }
+    .card-content { padding:2rem 1.5rem 0; text-align:center; }
 
-    /* ANIMATION & TYPOGRAPHY */
-    iframe.lottie {
-      width:96px; height:96px; margin-bottom:1.5rem;
+    /* Lottie */
+    iframe {
+      width:80px; height:80px; margin-bottom:1rem;
       border:none; background:transparent;
     }
+
+    /* Headings & Intro */
     h1 {
-      font-size:2rem; margin-bottom:0.5rem;
-      opacity:0; animation:fadeUp 1s ease forwards;
-      animation-delay:0.3s;
+      font-size:1.75rem; margin-bottom:0.25rem;
+      opacity:0; animation:fadeUp 1s ease forwards; animation-delay:0.3s;
     }
-    p.subtitle {
-      font-size:1.1rem; color:#3a3a3c;
-      opacity:0; animation:fadeUp 1s ease forwards;
-      animation-delay:0.6s;
+    .subtitle {
+      font-size:1rem; color:#8E8E93; margin-bottom:1.25rem;
+      opacity:0; animation:fadeUp 1s ease forwards; animation-delay:0.6s;
     }
     @keyframes fadeUp {
-      from {opacity:0; transform:translateY(10px);}
-      to   {opacity:1; transform:translateY(0);}
+      from { opacity:0; transform:translateY(10px); }
+      to   { opacity:1; transform:translateY(0); }
     }
 
-    /* FORM */
+    /* Form */
     form {
-      margin-top:1.5rem; display:flex; flex-direction:column; gap:0.8rem;
-      opacity:0; animation:fadeUp 1s ease forwards;
-      animation-delay:0.9s;
+      display:flex; flex-direction:column; gap:0.75rem;
+      opacity:0; animation:fadeUp 1s ease forwards; animation-delay:0.9s;
     }
     input[type="email"] {
-      padding:0.75rem 1rem; border-radius:20px; border:1px solid #ccc;
-      font-size:1rem; outline:none; background:rgba(255,255,255,0.6);
+      padding:.75rem 1rem; border-radius:20px;
+      border:1px solid rgba(0,0,0,0.1); background:rgba(255,255,255,0.8);
+      font-size:1rem; color:#1c1c1e;
     }
-    button {
-      padding:0.75rem 1rem; border:none; border-radius:20px;
+    button.notify {
+      padding:.75rem 1rem; border:none; border-radius:20px;
       background:#000; color:#fff; font-size:1rem; cursor:pointer;
-      transition:background 0.3s ease;
+      transition:opacity .2s ease;
     }
-    button:hover { background:#222; }
-
-    /* LEARN MORE TOGGLE */
-    .learn-more {
-      display:block; margin:1rem 0 0;
-      font-size:0.95rem; color:#3a57e8; text-decoration:none;
-      cursor:pointer;
-    }
-    .learn-more:hover { text-decoration:underline; }
-    #moreText {
-      max-height:0; overflow:hidden;
-      color:#666; font-size:1rem; line-height:1.5;
-      transition:max-height 0.4s ease, padding 0.4s ease;
-      padding:0 0;
-    }
-    #moreText.open {
-      max-height:300px; padding:1rem 0;
-    }
-
-    /* THANK YOU MESSAGE */
+    button.notify:hover { opacity:.85; }
     .thank-you {
-      display:none; font-size:1rem; color:#1c1c1e; margin-top:1rem;
-      animation:fadeUp 1s ease forwards;
+      display:none; margin-top:1rem; color:#1c1c1e;
     }
     .thank-you.active { display:block; }
 
-    /* FOOTER LINKS */
+    /* Learn more */
+    details.learn-more {
+      margin-top:1.25rem; font-size:.95rem; color:#8E8E93;
+    }
+    details.learn-more summary {
+      list-style:none; cursor:pointer; user-select:none;
+      display:inline-block; text-decoration:underline;
+      text-underline-offset:2px; -webkit-tap-highlight-color:transparent;
+    }
+    details.learn-more summary::-webkit-details-marker { display:none; }
+    details.learn-more summary::before {
+      content:"›"; display:inline-block; transform:rotate(90deg);
+      margin-right:.5ch; transition:transform .2s ease; color:#8E8E93;
+    }
+    details.learn-more[open] summary::before { transform:rotate(270deg); }
+    details.learn-more .more-text {
+      margin-top:.75rem; line-height:1.5; color:#1c1c1e; text-align:left;
+    }
+
+    /* Fixed footer */
     footer {
-      position:relative; z-index:2;
-      text-align:center; font-size:0.9rem; color:#7c7c7c;
-      opacity:0.8; margin:2rem 0 1rem;
+      position:fixed; bottom:0; left:0; width:100%;
+      text-align:center; padding:.75rem 1rem;
+      background:rgba(255,255,255,0.5);
+      border-top:1px solid rgba(0,0,0,0.1);
+      font-size:.85rem; color:#8E8E93; z-index:2;
     }
     footer a {
-      color:inherit; text-decoration:underline; margin:0 0.4rem;
+      color:#8E8E93; text-decoration:underline; margin:0 .25rem;
+      -webkit-tap-highlight-color:transparent;
     }
-    @media (max-width:480px) {
-      .glass { padding:2rem 1.2rem; }
-      h1 { font-size:1.6rem; }
-      p.subtitle { font-size:1rem; }
-      iframe.lottie { width:72px; height:72px; }
+
+    /* Mobile tweaks */
+    @media(max-width:400px){
+      .card { max-width:340px; }
+      h1 { font-size:1.5rem; }
+      .subtitle { font-size:.95rem; }
+      input, button.notify { font-size:.95rem; }
     }
   </style>
 </head>
 <body>
+
   <div class="bg-image"></div>
   <div class="ripple-overlay"></div>
 
-  <div class="glass">
-    <!-- loading animation -->
-    <iframe class="lottie"
-      src="https://lottie.host/embed/0344061d-7716-4584-a090-0b0ac781076b/SHQsS2zzYf.lottie"
-      allow="autoplay"
-    ></iframe>
+  <div class="container">
+    <div class="card" id="card">
+      <div class="card-content">
+        <iframe src="https://lottie.host/embed/0344061d-7716-4584-a090-0b0ac781076b/SHQsS2zzYf.lottie" title="Loading"></iframe>
+        <h1>LuxePixel Studios</h1>
+        <p class="subtitle">Crafting Beautiful Digital Experiences</p>
 
-    <h1>LuxePixel Studios</h1>
-    <p class="subtitle">Crafting beautiful digital experiences</p>
+        <form id="notify-form">
+          <input type="email" name="email" placeholder="Enter your email" required />
+          <button type="submit" class="notify">Notify Me</button>
+        </form>
+        <div class="thank-you" id="thankYouMessage">Thanks for signing up! 🎉</div>
 
-    <form id="notify-form">
-      <input type="email" name="email" placeholder="Enter your email" required />
-      <button type="submit">Notify Me</button>
-    </form>
-
-    <div class="thank-you" id="thankYouMessage">Thanks for signing up! 🎉</div>
-
-    <a class="learn-more" id="toggleMore">Learn more ↓</a>
-    <div id="moreText">
-      <p>
-        LuxePixel Studios is a UK-based creative studio specialising in web design, branding &amp; digital innovation. Our site is under construction, but our mission is simple: to bring five decades of design excellence into every pixel we craft. Stay tuned for exclusive previews and early-access offers.
-      </p>
+        <details class="learn-more">
+          <summary>Learn more</summary>
+          <div class="more-text">
+            <p>
+              LuxePixel Studios is a UK-based creative studio specialising in web design, branding &amp; digital innovation. Our site is under construction, but our mission is simple: deliver accessible, elegant digital experiences for brands who demand the best. Join our launch list to be first in line.
+            </p>
+          </div>
+        </details>
+      </div>
     </div>
   </div>
 
   <footer>
-    <a href="/privacy.html">Privacy Policy</a>|
-    <a href="/terms.html">Terms of Use</a>|
-    <a href="/cookies.html">Cookie Policy</a>|
+    <a href="/privacy.html">Privacy Policy</a> |
+    <a href="/terms.html">Terms of Use</a> |
+    <a href="/cookies.html">Cookie Policy</a> |
     <a href="/accessibility.html">Accessibility</a>
   </footer>
 
   <script>
-    // form submission via Formspree
-    const form = document.getElementById("notify-form");
-    const thankYou = document.getElementById("thankYouMessage");
-    form.addEventListener("submit", async e => {
+    // expand/collapse card if “Learn more” toggles
+    const card = document.getElementById('card');
+    document.querySelector('details.learn-more').addEventListener('toggle', e => {
+      card.classList.toggle('expanded', e.target.open);
+    });
+
+    // form submit handler
+    document.getElementById('notify-form').addEventListener('submit', async e => {
       e.preventDefault();
+      const form = e.target;
       const data = new FormData(form);
       try {
-        let res = await fetch("https://formspree.io/f/mgvyzqan", {
-          method: "POST",
-          headers: { Accept: "application/json" },
+        const res = await fetch('https://formspree.io/f/mgvyzqan', {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
           body: data
         });
         if (res.ok) {
-          form.style.display = "none";
-          thankYou.classList.add("active");
+          form.style.display = 'none';
+          document.getElementById('thankYouMessage').classList.add('active');
         } else {
-          alert("Sorry, there was an error. Please try again.");
+          alert('Something went wrong. Please try again.');
         }
       } catch {
-        alert("Network error. Please try again later.");
+        alert('Error submitting form.');
       }
-    });
-
-    // learn-more toggle
-    const toggle = document.getElementById("toggleMore");
-    const more   = document.getElementById("moreText");
-    toggle.addEventListener("click", () => {
-      const open = more.classList.toggle("open");
-      toggle.textContent = open ? "Less ↑" : "Learn more ↓";
-      form.style.display     = open ? "none" : "flex";
-      thankYou.style.display = open ? "none" : "";
     });
   </script>
 </body>
