@@ -7,171 +7,96 @@
   <meta name="description" content="LuxePixel Studios is almost live. Be the first to experience premium design, digital creativity, and innovation." />
   <link rel="canonical" href="https://luxepixelstudios.com/" />
 
-  <!-- Google Analytics (gtag.js) -->
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-YL17025JEB"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
+    window.dataLayer = window.dataLayer||[];
+    function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-YL17025JEB');
+    gtag('config','G-YL17025JEB');
   </script>
 
-  <!-- Structured Data: Organization -->
+  <!-- Organization JSON-LD -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "LuxePixel Studios",
-    "url": "https://luxepixelstudios.com",
-    "logo": "https://luxepixelstudios.com/my-favicon/favicon-96x96.png",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "email": "contact@luxepixelstudios.com",
-      "contactType": "customer service",
-      "availableLanguage": "en"
+  { "@context":"https://schema.org", "@type":"Organization",
+    "name":"LuxePixel Studios","url":"https://luxepixelstudios.com",
+    "logo":"https://luxepixelstudios.com/my-favicon/favicon-96x96.png",
+    "contactPoint":{ "@type":"ContactPoint",
+      "email":"contact@luxepixelstudios.com","contactType":"customer service","availableLanguage":"en"
     }
   }
   </script>
 
   <style>
-    /* Reset & Base */
-    * { margin:0; padding:0; box-sizing:border-box }
-    html, body {
-      height:100%; width:100%;
-      font-family:-apple-system, BlinkMacSystemFont, "SF Pro Text","Helvetica Neue",sans-serif;
-      background:#f2f2f7; color:#1c1c1e; overflow-x:hidden;
+    /* --- Reset & Base --- */
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{height:100%;width:100%;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;background:#f2f2f7;color:#1c1c1e;overflow-x:hidden}
+    /* --- Background & Ripple --- */
+    .bg-image{position:fixed;top:0;left:0;width:100%;height:100%;background:url("https://i.imgur.com/qb6HJXqm.jpg")center/cover no-repeat;filter:blur(20px);z-index:0}
+    .ripple-overlay{position:fixed;top:0;left:0;width:200%;height:200%;background:radial-gradient(circle,rgba(255,255,255,0.04)1px,transparent 1px);background-size:50px 50px;animation:ripple 30s linear infinite;opacity:0.4;z-index:1}
+    @keyframes ripple{from{transform:translate(0)}to{transform:translate(100px,100px)}}
+    /* --- Card --- */
+    .container{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;height:100vh;padding:1rem}
+    .card{background:rgba(255,255,255,0.6);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-radius:24px;box-shadow:0 8px 32px rgba(0,0,0,0.12);width:100%;max-width:360px;overflow:hidden;transition:max-height .5s ease,padding-bottom .5s ease;max-height:900px;padding-bottom:1rem}
+    .card-content{padding:2rem 1.5rem 0;text-align:center}
+    iframe{width:80px;height:80px;margin-bottom:1rem;border:none;background:transparent}
+    h1{font-size:1.75rem;margin-bottom:.25rem;opacity:0;animation:fadeUp 1s ease forwards;animation-delay:.3s}
+    .subtitle{font-size:1rem;color:#8E8E93;margin-bottom:1.25rem;opacity:0;animation:fadeUp 1s ease forwards;animation-delay:.6s}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    /* --- Form & Learn More --- */
+    form{display:flex;flex-direction:column;gap:.75rem;opacity:0;animation:fadeUp 1s ease forwards;animation-delay:.9s}
+    input[type="email"]{padding:.75rem 1rem;border-radius:20px;border:1px solid rgba(0,0,0,0.1);background:rgba(255,255,255,0.8);font-size:1rem;color:#1c1c1e}
+    button.notify{padding:.75rem 1rem;border:none;border-radius:20px;background:#000;color:#fff;font-size:1rem;cursor:pointer;transition:opacity .2s}
+    button.notify:hover{opacity:.85}
+    .thank-you{display:none;margin-top:1rem;color:#1c1c1e}
+    .thank-you.active{display:block}
+    details.learn-more{margin-top:1.25rem;font-size:.95rem;color:#8E8E93}
+    details.learn-more summary{list-style:none;cursor:pointer;user-select:none;display:inline-block;text-decoration:underline;text-underline-offset:2px}
+    details.learn-more summary::-webkit-details-marker{display:none}
+    details.learn-more summary::before{content:"›";display:inline-block;transform:rotate(90deg);margin-right:.5ch;transition:transform .2s;color:#8E8E93}
+    details.learn-more[open] summary::before{transform:rotate(270deg)}
+    details.learn-more .more-text{margin-top:.75rem;line-height:1.5;color:#1c1c1e;text-align:left}
+    /* --- Footer Links --- */
+    footer{position:fixed;bottom:0;left:0;width:100%;text-align:center;padding:.75rem 1rem;background:rgba(255,255,255,0.5);border-top:1px solid rgba(0,0,0,0.1);font-size:.85rem;color:#8E8E93;z-index:2}
+    footer a{color:#8E8E93;text-decoration:underline;margin:0 .25rem;cursor:pointer}
+    /* --- Modals --- */
+    .modal {
+      display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+      background:rgba(0,0,0,0.5); align-items:center; justify-content:center;
+      z-index:3; padding:1rem;
     }
-
-    /* Background Layers */
-    .bg-image {
-      position:fixed; top:0; left:0; width:100%; height:100%;
-      background:url("https://i.imgur.com/qb6HJXqm.jpg") center/cover no-repeat;
-      filter:blur(20px); z-index:0;
+    .modal.open { display:flex; }
+    .modal-content {
+      background:#fff; border-radius:16px; width:100%; max-width:600px; max-height:90%;
+      overflow:auto; position:relative; padding:1.5rem;
     }
-    .ripple-overlay {
-      position:fixed; top:0; left:0; width:200%; height:200%;
-      background:radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
-      background-size:50px 50px;
-      animation:ripple 30s linear infinite; opacity:0.4; z-index:1;
+    .modal-close {
+      position:absolute; top:.75rem; right:.75rem;
+      background:none; border:none; font-size:1.25rem; cursor:pointer; color:#666;
     }
-    @keyframes ripple { from{transform:translate(0)} to{transform:translate(100px,100px)} }
-
-    /* Container & Card */
-    .container {
-      position:relative; z-index:2;
-      display:flex; align-items:center; justify-content:center;
-      height:100vh; padding:1rem;
-    }
-    .card {
-      background:rgba(255,255,255,0.6);
-      backdrop-filter:blur(30px); -webkit-backdrop-filter:blur(30px);
-      border-radius:24px; box-shadow:0 8px 32px rgba(0,0,0,0.12);
-      width:100%; max-width:360px; overflow:hidden;
-      transition:max-height .5s ease, padding-bottom .5s ease;
-      max-height:900px; padding-bottom:1rem;
-    }
-    .card-content { padding:2rem 1.5rem 0; text-align:center; }
-
-    /* Lottie */
-    iframe {
-      width:80px; height:80px; margin-bottom:1rem;
-      border:none; background:transparent;
-    }
-
-    /* Headings & Intro */
-    h1 {
-      font-size:1.75rem; margin-bottom:0.25rem;
-      opacity:0; animation:fadeUp 1s ease forwards; animation-delay:0.3s;
-    }
-    .subtitle {
-      font-size:1rem; color:#8E8E93; margin-bottom:1.25rem;
-      opacity:0; animation:fadeUp 1s ease forwards; animation-delay:0.6s;
-    }
-    @keyframes fadeUp {
-      from { opacity:0; transform:translateY(10px); }
-      to   { opacity:1; transform:translateY(0); }
-    }
-
-    /* Form */
-    form {
-      display:flex; flex-direction:column; gap:0.75rem;
-      opacity:0; animation:fadeUp 1s ease forwards; animation-delay:0.9s;
-    }
-    input[type="email"] {
-      padding:.75rem 1rem; border-radius:20px;
-      border:1px solid rgba(0,0,0,0.1); background:rgba(255,255,255,0.8);
-      font-size:1rem; color:#1c1c1e;
-    }
-    button.notify {
-      padding:.75rem 1rem; border:none; border-radius:20px;
-      background:#000; color:#fff; font-size:1rem; cursor:pointer;
-      transition:opacity .2s ease;
-    }
-    button.notify:hover { opacity:.85; }
-    .thank-you {
-      display:none; margin-top:1rem; color:#1c1c1e;
-    }
-    .thank-you.active { display:block; }
-
-    /* Learn more */
-    details.learn-more {
-      margin-top:1.25rem; font-size:.95rem; color:#8E8E93;
-    }
-    details.learn-more summary {
-      list-style:none; cursor:pointer; user-select:none;
-      display:inline-block; text-decoration:underline;
-      text-underline-offset:2px; -webkit-tap-highlight-color:transparent;
-    }
-    details.learn-more summary::-webkit-details-marker { display:none; }
-    details.learn-more summary::before {
-      content:"›"; display:inline-block; transform:rotate(90deg);
-      margin-right:.5ch; transition:transform .2s ease; color:#8E8E93;
-    }
-    details.learn-more[open] summary::before { transform:rotate(270deg); }
-    details.learn-more .more-text {
-      margin-top:.75rem; line-height:1.5; color:#1c1c1e; text-align:left;
-    }
-
-    /* Fixed footer */
-    footer {
-      position:fixed; bottom:0; left:0; width:100%;
-      text-align:center; padding:.75rem 1rem;
-      background:rgba(255,255,255,0.5);
-      border-top:1px solid rgba(0,0,0,0.1);
-      font-size:.85rem; color:#8E8E93; z-index:2;
-    }
-    footer a {
-      color:#8E8E93; text-decoration:underline; margin:0 .25rem;
-      -webkit-tap-highlight-color:transparent;
-    }
-
-    /* Mobile tweaks */
+    /* --- Responsive --- */
     @media(max-width:400px){
-      .card { max-width:340px; }
-      h1 { font-size:1.5rem; }
-      .subtitle { font-size:.95rem; }
-      input, button.notify { font-size:.95rem; }
+      .card{max-width:340px}
+      h1{font-size:1.5rem}
+      .subtitle{font-size:.95rem}
+      input,button.notify{font-size:.95rem}
     }
   </style>
 </head>
 <body>
-
   <div class="bg-image"></div>
   <div class="ripple-overlay"></div>
-
   <div class="container">
     <div class="card" id="card">
       <div class="card-content">
         <iframe src="https://lottie.host/embed/0344061d-7716-4584-a090-0b0ac781076b/SHQsS2zzYf.lottie" title="Loading"></iframe>
         <h1>LuxePixel Studios</h1>
         <p class="subtitle">Crafting Beautiful Digital Experiences</p>
-
         <form id="notify-form">
           <input type="email" name="email" placeholder="Enter your email" required />
           <button type="submit" class="notify">Notify Me</button>
         </form>
         <div class="thank-you" id="thankYouMessage">Thanks for signing up! 🎉</div>
-
         <details class="learn-more">
           <summary>Learn more</summary>
           <div class="more-text">
@@ -184,40 +109,73 @@
     </div>
   </div>
 
+  <!-- Footer with modal triggers -->
   <footer>
-    <a href="/privacy.html">Privacy Policy</a> |
-    <a href="/terms.html">Terms of Use</a> |
-    <a href="/cookies.html">Cookie Policy</a> |
-    <a href="/accessibility.html">Accessibility</a>
+    <a data-modal="privacy">Privacy Policy</a> |
+    <a data-modal="terms">Terms of Use</a> |
+    <a data-modal="cookies">Cookie Policy</a> |
+    <a data-modal="accessibility">Accessibility</a>
   </footer>
 
-  <script>
-    // expand/collapse card if “Learn more” toggles
-    const card = document.getElementById('card');
-    document.querySelector('details.learn-more').addEventListener('toggle', e => {
-      card.classList.toggle('expanded', e.target.open);
-    });
+  <!-- Modals -->
+  <div class="modal" id="modal-privacy">
+    <div class="modal-content">
+      <button class="modal-close">✕</button>
+      <h2>Privacy Policy</h2>
+      <p><!-- paste your full privacy.html content here --></p>
+    </div>
+  </div>
+  <div class="modal" id="modal-terms">
+    <div class="modal-content">
+      <button class="modal-close">✕</button>
+      <h2>Terms of Use</h2>
+      <p><!-- paste your full terms.html content here --></p>
+    </div>
+  </div>
+  <div class="modal" id="modal-cookies">
+    <div class="modal-content">
+      <button class="modal-close">✕</button>
+      <h2>Cookie Policy</h2>
+      <p><!-- paste your full cookies.html content here --></p>
+    </div>
+  </div>
+  <div class="modal" id="modal-accessibility">
+    <div class="modal-content">
+      <button class="modal-close">✕</button>
+      <h2>Accessibility Statement</h2>
+      <p><!-- paste your full accessibility.html content here --></p>
+    </div>
+  </div>
 
-    // form submit handler
+  <script>
+    // form submission
     document.getElementById('notify-form').addEventListener('submit', async e => {
       e.preventDefault();
-      const form = e.target;
-      const data = new FormData(form);
+      const form = e.target, data = new FormData(form);
       try {
         const res = await fetch('https://formspree.io/f/mgvyzqan', {
-          method: 'POST',
-          headers: { Accept: 'application/json' },
-          body: data
+          method:'POST', headers:{Accept:'application/json'}, body:data
         });
-        if (res.ok) {
-          form.style.display = 'none';
+        if(res.ok){
+          form.style.display='none';
           document.getElementById('thankYouMessage').classList.add('active');
-        } else {
-          alert('Something went wrong. Please try again.');
-        }
+        } else alert('Something went wrong');
       } catch {
-        alert('Error submitting form.');
+        alert('Network error');
       }
+    });
+
+    // modal handling
+    document.querySelectorAll('footer a[data-modal]').forEach(link => {
+      link.addEventListener('click', () => {
+        const id = link.getAttribute('data-modal');
+        document.getElementById('modal-' + id).classList.add('open');
+      });
+    });
+    document.querySelectorAll('.modal-close').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.closest('.modal').classList.remove('open');
+      });
     });
   </script>
 </body>
