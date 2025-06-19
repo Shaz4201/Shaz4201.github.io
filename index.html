@@ -131,13 +131,6 @@
     .thank-you.active {
       display: block;
     }
-    /* Confetti canvas is fullscreen */
-    #confetti-canvas {
-      position: fixed;
-      pointer-events: none;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      z-index: 99;
-    }
     @media (max-width: 480px) {
       .glass {
         padding: 2rem 1.2rem;
@@ -151,7 +144,6 @@
 <body>
   <div class="bg-image"></div>
   <div class="ripple-overlay"></div>
-  <canvas id="confetti-canvas"></canvas>
   <div class="glass">
     <iframe class="lottie" src="https://lottie.host/embed/0344061d-7716-4584-a090-0b0ac781076b/SHQsS2zzYf.lottie"></iframe>
     <h1>LuxePixel Studios</h1>
@@ -163,80 +155,6 @@
     <div class="thank-you" id="thankYouMessage">Thanks for signing up! 🎉</div>
   </div>
   <script>
-    // --- Realistic Confetti Burst! ---
-    const colors = [
-      "#FF6F91", "#F9D423", "#00B8A9", "#6A89CC", "#38ada9", "#E17055",
-      "#f7b731", "#FDA7DF", "#686de0", "#303952", "#FD7272", "#3ae374"
-    ];
-    const shapes = [
-      {curve: true, blur: 16}, // Blurred, curved
-      {curve: true, blur: 0},  // Sharp, curved
-      {curve: false, blur: 8}, // Blurred, straight
-      {curve: false, blur: 0}  // Sharp, straight
-    ];
-
-    function drawConfettiPiece(ctx, x, y, w, h, color, angle, blur, curve) {
-      ctx.save();
-      ctx.globalAlpha = 0.8;
-      ctx.translate(x, y);
-      ctx.rotate(angle);
-      if (blur) ctx.shadowBlur = blur, ctx.shadowColor = color;
-      ctx.beginPath();
-      if (curve) {
-        ctx.moveTo(0, 0);
-        ctx.bezierCurveTo(w * 0.7, -h * 0.6, w * 0.8, h * 1.2, w, h);
-        ctx.lineTo(w, h + 5);
-        ctx.bezierCurveTo(w * 0.4, h + 12, -w * 0.5, h * 0.7, 0, 0);
-      } else {
-        ctx.ellipse(w/2, h/2, w/2, h/2, 0, 0, 2*Math.PI);
-      }
-      ctx.closePath();
-      ctx.fillStyle = color;
-      ctx.fill();
-      ctx.restore();
-    }
-
-    function launchRealisticConfetti() {
-      const canvas = document.getElementById('confetti-canvas');
-      const ctx = canvas.getContext('2d');
-      const W = window.innerWidth, H = window.innerHeight;
-      canvas.width = W;
-      canvas.height = H;
-      const confetti = [];
-      for (let i = 0; i < 48; i++) {
-        let shape = shapes[Math.floor(Math.random() * shapes.length)];
-        confetti.push({
-          x: (W/2) + (Math.random()-0.5)*W*0.45,
-          y: -Math.random() * 120,
-          w: 20 + Math.random() * 20,
-          h: 7 + Math.random() * 10,
-          angle: Math.random() * Math.PI * 2,
-          speed: 2 + Math.random() * 3,
-          sway: Math.random() * 2 + 0.5,
-          drift: Math.random() * 2,
-          color: colors[Math.floor(Math.random()*colors.length)],
-          curve: shape.curve,
-          blur: shape.blur,
-          rotSpeed: (Math.random() - 0.5) * 0.09
-        });
-      }
-      let frame = 0;
-      function animate() {
-        ctx.clearRect(0, 0, W, H);
-        confetti.forEach(piece => {
-          piece.x += Math.sin(frame/12 + piece.sway) * piece.sway + piece.drift;
-          piece.y += piece.speed;
-          piece.angle += piece.rotSpeed;
-          drawConfettiPiece(ctx, piece.x, piece.y, piece.w, piece.h, piece.color, piece.angle, piece.blur, piece.curve);
-        });
-        frame++;
-        if (frame < 90) requestAnimationFrame(animate);
-        else setTimeout(() => ctx.clearRect(0,0,W,H), 1800);
-      }
-      animate();
-    }
-
-    // --- Form submit and confetti launch ---
     const form = document.getElementById("notify-form");
     const thankYou = document.getElementById("thankYouMessage");
     form.addEventListener("submit", async (e) => {
@@ -251,7 +169,6 @@
         if (response.ok) {
           form.style.display = "none";
           thankYou.classList.add("active");
-          launchRealisticConfetti();
         } else {
           alert("Something went wrong. Please try again.");
         }
