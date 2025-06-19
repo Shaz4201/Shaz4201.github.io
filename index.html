@@ -4,131 +4,103 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>LuxePixel Studios – Coming Soon</title>
-  <link rel="icon" href="https://img.icons8.com/?size=100&id=123335&format=png&color=000000" type="image/png" />
   <style>
-    html, body {
+    * {
       margin: 0;
       padding: 0;
-      height: 100%;
-      font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", sans-serif;
-      overflow: hidden;
+      box-sizing: border-box;
     }
 
-    body {
-      background: radial-gradient(circle at center, #f2f2f7, #e0e0e5);
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    html, body {
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", sans-serif;
+      background: #f2f2f7;
+      overflow: hidden;
       color: #1c1c1e;
     }
 
-    /* Particle background */
-    .particles {
+    /* Ripple effect */
+    body::before {
+      content: "";
       position: absolute;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background: radial-gradient(circle, rgba(0,0,0,0.03) 1px, transparent 1px);
       background-size: 40px 40px;
-      animation: drift 30s linear infinite;
-      z-index: 1;
+      animation: ripple 20s linear infinite;
+      z-index: 0;
     }
 
-    @keyframes drift {
-      0% { background-position: 0 0; }
-      100% { background-position: 100px 100px; }
+    @keyframes ripple {
+      from { transform: translate(0, 0); }
+      to { transform: translate(40px, 40px); }
     }
 
-    .glass-box {
+    .glass {
       position: relative;
-      z-index: 10;
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 24px;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border-radius: 28px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       padding: 3rem 2rem;
-      text-align: center;
-      width: 90%;
       max-width: 420px;
-      animation: popIn 1s ease-out forwards;
+      width: 90%;
+      margin: auto;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: center;
     }
 
-    @keyframes popIn {
-      0% { transform: scale(0.9); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    .glass-box img {
-      width: 80px;
-      height: 80px;
+    .gear {
+      width: 72px;
+      height: 72px;
       margin-bottom: 1.5rem;
-      animation: float 3.5s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .glass-box h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-      animation: fadeInUp 1s ease forwards;
-    }
-
-    .glass-box p {
-      font-size: 1.1rem;
-      color: #3a3a3c;
-      margin-bottom: 2rem;
-      animation: fadeInUp 1.2s ease forwards;
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .spinner {
-      width: 32px;
-      height: 32px;
-      border: 3px solid rgba(0, 0, 0, 0.1);
-      border-top: 3px solid #1c1c1e;
-      border-radius: 50%;
-      margin: 0 auto;
-      animation: spin 1s linear infinite;
+      animation: spin 2s linear infinite;
     }
 
     @keyframes spin {
-      to { transform: rotate(360deg); }
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
-    .reflection {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(120deg, rgba(255,255,255,0.1), transparent 70%);
-      mix-blend-mode: screen;
-      pointer-events: none;
-      animation: shimmer 8s infinite;
-      z-index: 5;
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
     }
 
-    @keyframes shimmer {
-      0% { transform: translateX(-100%) translateY(-100%) rotate(10deg); }
-      100% { transform: translateX(100%) translateY(100%) rotate(10deg); }
+    p {
+      font-size: 1.1rem;
+      color: #3a3a3c;
+    }
+
+    @media (max-width: 480px) {
+      .glass {
+        padding: 2rem 1.5rem;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="particles"></div>
-  <div class="reflection"></div>
-  <div class="glass-box">
-    <img src="https://img.icons8.com/?size=100&id=123335&format=png&color=000000" alt="LuxePixel Icon" />
+  <div class="glass">
+    <!-- SVG Spinning Gear -->
+    <svg class="gear" xmlns="http://www.w3.org/2000/svg" fill="#000" viewBox="0 0 24 24">
+      <path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7ZM19.43 11a7.04 7.04 0 0 0-.2-1.5h2.27a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-2.27a6.54 6.54 0 0 0-.79-1.5l1.61-1.61a.5.5 0 0 0 0-.71l-1.41-1.41a.5.5 0 0 0-.71 0l-1.61 1.61a6.54 6.54 0 0 0-1.5-.79V2.5a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 0-.5.5v2.27a7.04 7.04 0 0 0-1.5.2V2.5a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 0-.5.5v2.27a6.54 6.54 0 0 0-1.5.79L2.54 4.46a.5.5 0 0 0-.71 0L.42 5.87a.5.5 0 0 0 0 .71l1.61 1.61a6.54 6.54 0 0 0-.79 1.5H.5a.5.5 0 0 0-.5.5v2c0 .28.22.5.5.5h2.27a7.04 7.04 0 0 0 .2 1.5H.5a.5.5 0 0 0-.5.5v2c0 .28.22.5.5.5h2.27a6.54 6.54 0 0 0 .79 1.5L1.95 19.3a.5.5 0 0 0 0 .71l1.41 1.41a.5.5 0 0 0 .71 0l1.61-1.61a6.54 6.54 0 0 0 1.5.79V21.5a.5.5 0 0 0 .5.5h2c.28 0 .5-.22.5-.5v-2.27a7.04 7.04 0 0 0 1.5-.2V21.5c0 .28.22.5.5.5h2c.28 0 .5-.22.5-.5v-2.27a6.54 6.54 0 0 0 1.5-.79l1.61 1.61a.5.5 0 0 0 .71 0l1.41-1.41a.5.5 0 0 0 0-.71l-1.61-1.61a6.54 6.54 0 0 0 .79-1.5h2.27a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-2.27Z"/>
+    </svg>
+
     <h1>LuxePixel Studios</h1>
-    <p>Our new website is almost ready.<br>You're going to love it.</p>
-    <div class="spinner" aria-hidden="true"></div>
+    <p>Our new website is nearly ready. You’ll want to see what’s coming.</p>
   </div>
 </body>
 </html>
