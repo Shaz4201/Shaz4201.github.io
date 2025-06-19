@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>LuxePixel Studios – Coming Soon</title>
+
+  <!-- ✅ Favicon Links -->
+  <link rel="icon" type="image/png" href="/my-favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/my-favicon/favicon.svg" />
+  <link rel="shortcut icon" href="/my-favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/my-favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="/my-favicon/site.webmanifest" />
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
@@ -14,6 +22,7 @@
       overflow: hidden;
       color: #1c1c1e;
     }
+
     .bg-image {
       position: fixed;
       top: 0; left: 0;
@@ -22,6 +31,7 @@
       filter: blur(20px);
       z-index: 0;
     }
+
     .ripple-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -32,10 +42,12 @@
       z-index: 1;
       opacity: 0.4;
     }
+
     @keyframes ripple {
       from { transform: translate(0, 0); }
       to { transform: translate(100px, 100px); }
     }
+
     .glass {
       position: relative;
       z-index: 2;
@@ -53,6 +65,7 @@
       transform: translateY(-50%);
       overflow: hidden;
     }
+
     .glass::before {
       content: "";
       position: absolute;
@@ -63,16 +76,19 @@
       animation: shimmer 5s infinite;
       pointer-events: none;
     }
+
     @keyframes shimmer {
       0% { transform: translate(-100%, -100%) rotate(25deg); }
       100% { transform: translate(100%, 100%) rotate(25deg); }
     }
+
     iframe.lottie {
       width: 96px; height: 96px;
       margin-bottom: 1.5rem;
       border: none;
       background: transparent;
     }
+
     h1 {
       font-size: 2rem;
       margin-bottom: 0.5rem;
@@ -80,6 +96,7 @@
       animation: fadeUp 1s ease forwards;
       animation-delay: 0.3s;
     }
+
     p {
       font-size: 1.1rem;
       color: #3a3a3c;
@@ -87,10 +104,12 @@
       animation: fadeUp 1s ease forwards;
       animation-delay: 0.6s;
     }
+
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
     form {
       margin-top: 1.5rem;
       display: flex;
@@ -100,6 +119,7 @@
       animation-delay: 0.9s;
       opacity: 0;
     }
+
     input[type="email"] {
       padding: 0.75rem 1rem;
       border-radius: 20px;
@@ -108,6 +128,7 @@
       outline: none;
       background: rgba(255,255,255,0.6);
     }
+
     button {
       padding: 0.75rem 1rem;
       border: none;
@@ -118,9 +139,11 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
+
     button:hover {
       background: #222;
     }
+
     .thank-you {
       display: none;
       font-size: 1rem;
@@ -128,9 +151,11 @@
       margin-top: 1rem;
       animation: fadeUp 1s ease forwards;
     }
+
     .thank-you.active {
       display: block;
     }
+
     @media (max-width: 480px) {
       .glass {
         padding: 2rem 1.2rem;
@@ -139,11 +164,64 @@
       p { font-size: 1rem; }
       iframe.lottie { width: 72px; height: 72px; }
     }
+
+    /* Footer Style (Apple-inspired) */
+    .apple-footer {
+      width: 100%;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      background: #f5f5f7;
+      padding: 1.3rem 0 0.7rem 0;
+      z-index: 20;
+      box-shadow: 0 -2px 16px rgba(0,0,0,0.04);
+    }
+    .divider {
+      border-top: 1.3px solid #d2d2d7;
+      width: 95%;
+      margin: 0 auto 0.8rem auto;
+    }
+    .footer-section {
+      font-size: 1.14rem;
+      font-weight: 500;
+      color: #232323;
+      padding: 0.2rem 2rem 0.8rem 2rem;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .footer-title {
+      letter-spacing: .01em;
+    }
+    .footer-bottom {
+      font-size: 0.97rem;
+      color: #7c7c7c;
+      text-align: left;
+      padding: 0.1rem 2rem 0 2rem;
+    }
+    .footer-bottom a {
+      color: #7c7c7c;
+      text-decoration: underline;
+      opacity: .9;
+      transition: color .2s;
+    }
+    .footer-bottom a:hover {
+      color: #222;
+    }
+    @media (max-width: 600px) {
+      .footer-section, .footer-bottom {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .apple-footer { font-size: 0.98rem;}
+    }
   </style>
 </head>
 <body>
   <div class="bg-image"></div>
   <div class="ripple-overlay"></div>
+
   <div class="glass">
     <iframe class="lottie" src="https://lottie.host/embed/0344061d-7716-4584-a090-0b0ac781076b/SHQsS2zzYf.lottie"></iframe>
     <h1>LuxePixel Studios</h1>
@@ -154,9 +232,23 @@
     </form>
     <div class="thank-you" id="thankYouMessage">Thanks for signing up! 🎉</div>
   </div>
+
+  <!-- Apple-style Footer -->
+  <footer class="apple-footer">
+    <div class="divider"></div>
+    <div class="footer-section">
+      <span class="footer-title">Shop and Learn</span>
+    </div>
+    <div class="divider"></div>
+    <div class="footer-bottom">
+      <a href="/privacy.html">Privacy Policy</a>
+    </div>
+  </footer>
+
   <script>
     const form = document.getElementById("notify-form");
     const thankYou = document.getElementById("thankYouMessage");
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const formData = new FormData(form);
@@ -179,6 +271,3 @@
   </script>
 </body>
 </html>
-<footer style="text-align:center;margin-top:3rem;color:#7c7c7c;font-size:0.93rem;opacity:.8;">
-  <a href="/privacy.html" style="color:#7c7c7c;text-decoration:underline;">Privacy Policy</a>
-</footer>
