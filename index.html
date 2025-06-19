@@ -17,149 +17,134 @@
 
   <style>
     /* Reset & Base */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin:0; padding:0; box-sizing:border-box }
     html, body {
-      height: 100%; width: 100%;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text","Helvetica Neue",sans-serif;
-      background: #f2f2f7; color: #1c1c1e; overflow: hidden;
+      height:100%; width:100%;
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;
+      background:#f2f2f7; color:#1c1c1e; overflow:hidden;
     }
 
-    /* Blurred Background + Ripple */
+    /* Blurred background + ripple */
     .bg-image {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: url("https://i.imgur.com/qb6HJXqm.jpg") center/cover no-repeat;
-      filter: blur(20px); z-index: 0;
+      position:fixed; top:0; left:0; width:100%; height:100%;
+      background:url("https://i.imgur.com/qb6HJXqm.jpg") center/cover no-repeat;
+      filter:blur(20px); z-index:0;
     }
     .ripple-overlay {
-      position: fixed; top: 0; left: 0; width: 200%; height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
-      background-size: 50px 50px;
-      animation: ripple 30s linear infinite; opacity: 0.4; z-index: 1;
+      position:fixed; top:0; left:0; width:200%; height:200%;
+      background:radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size:50px 50px;
+      animation:ripple 30s linear infinite; opacity:0.4; z-index:1;
     }
-    @keyframes ripple { from { transform: translate(0) } to { transform: translate(100px,100px) } }
+    @keyframes ripple { from{transform:translate(0)} to{transform:translate(100px,100px)} }
 
-    /* Center Container */
+    /* Center container */
     .container {
-      position: relative; z-index: 2;
-      display: flex; align-items: center; justify-content: center;
-      height: 100vh; padding: 1rem;
+      position:relative; z-index:2;
+      display:flex; align-items:center; justify-content:center;
+      height:100vh; padding:1rem;
     }
 
-    /* Glass-style Card */
+    /* Glass card */
     .card {
-      position: relative;
-      background: rgba(255,255,255,0.6);
-      backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
-      border-radius: 24px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-      width: 100%; max-width: 360px;
-      overflow: hidden;
-      transition: max-height 0.5s ease, padding-bottom 0.5s ease;
-      max-height: 900px; /* ample room even closed */
-      padding-bottom: 1rem;
+      background:rgba(255,255,255,0.6);
+      backdrop-filter:blur(30px); -webkit-backdrop-filter:blur(30px);
+      border-radius:24px; box-shadow:0 8px 32px rgba(0,0,0,0.12);
+      width:100%; max-width:360px; overflow:hidden;
+      transition:max-height 0.5s ease, padding-bottom 0.5s ease;
+      max-height:900px; padding-bottom:1rem;
     }
-
-    .close-btn {
-      position: absolute; top: 12px; right: 12px;
-      font-size: 18px; background: transparent; border: none;
-      color: #666; cursor: pointer; display: none;
-    }
-    .card.expanded .close-btn {
-      display: block;
+    .card.expanded {
+      padding-bottom:1.5rem;
     }
 
     .card-content {
-      padding: 2rem 1.5rem 1rem; text-align: center;
+      padding:2rem 1.5rem 1rem; text-align:center;
     }
 
-    /* Lottie with no box */
+    /* Lottie no-box */
     .card-content iframe {
-      width: 80px; height: 80px;
-      margin-bottom: 1rem;
-      border: none; box-shadow: none; background: transparent;
+      width:80px; height:80px; margin-bottom:1rem;
+      border:none; background:transparent; box-shadow:none;
     }
 
-    /* Title + Subtitle */
+    /* Title + grey subtitle */
     h1 {
-      font-size: 1.75rem; line-height: 1.2;
-      margin-bottom: 0.25rem;
+      font-size:1.75rem; line-height:1.2; margin-bottom:0.25rem;
     }
     .subtitle {
-      font-size: 1rem; color: #3a3a3c;
-      margin-bottom: 1.25rem;
+      font-size:1rem; color:#8E8E93; margin-bottom:1.25rem;
     }
 
-    /* Email Form */
+    /* Email form */
     form {
-      display: flex; flex-direction: column; gap: 0.75rem;
+      display:flex; flex-direction:column; gap:0.75rem;
     }
     input[type="email"] {
-      padding: 0.75rem 1rem;
-      border-radius: 20px; border: 1px solid rgba(0,0,0,0.1);
-      background: rgba(255,255,255,0.8);
-      font-size: 1rem; color: #1c1c1e;
+      padding:0.75rem 1rem; border-radius:20px;
+      border:1px solid rgba(0,0,0,0.1); background:rgba(255,255,255,0.8);
+      font-size:1rem; color:#1c1c1e;
     }
     button.notify {
-      padding: 0.75rem 1rem; border: none; border-radius: 20px;
-      background: #000; color: #fff;
-      font-size: 1rem; cursor: pointer;
-      transition: opacity 0.2s ease;
+      padding:0.75rem 1rem; border:none; border-radius:20px;
+      background:#000; color:#fff; font-size:1rem; cursor:pointer;
+      transition:opacity 0.2s ease;
     }
-    button.notify:hover { opacity: 0.85; }
+    button.notify:hover { opacity:0.85; }
 
     .thank-you {
-      display: none; margin-top: 1rem; color: #1c1c1e;
+      display:none; margin-top:1rem; color:#1c1c1e;
     }
     .thank-you.active {
-      display: block;
+      display:block;
     }
 
-    /* Native Learn More (<details>) */
+    /* Native details learn-more in grey */
     details.learn-more {
-      margin-top: 1.25rem; font-size: 0.95rem; color: #8E8E93;
+      margin-top:1.25rem; font-size:0.95rem; color:#8E8E93;
     }
     details.learn-more summary {
-      list-style: none; cursor: pointer; user-select: none;
-      outline: none; display: inline-block;
-      text-decoration: underline;
-      text-underline-offset: 2px;
-      -webkit-tap-highlight-color: transparent;
+      list-style:none; cursor:pointer; user-select:none;
+      display:inline-block; text-decoration:underline;
+      text-underline-offset:2px;
+      -webkit-tap-highlight-color:transparent;
     }
     details.learn-more summary::-webkit-details-marker {
-      display: none;
+      display:none;
     }
     details.learn-more summary::before {
-      content: "›"; display: inline-block;
-      transform: rotate(90deg);
-      margin-right: 0.5ch; transition: transform 0.2s ease;
-      color: #8E8E93;
+      content:"›"; display:inline-block;
+      transform:rotate(90deg); margin-right:0.5ch;
+      transition:transform 0.2s ease; color:#8E8E93;
     }
     details.learn-more[open] summary::before {
-      transform: rotate(270deg);
+      transform:rotate(270deg);
     }
     details.learn-more .more-text {
-      margin-top: 0.75rem; line-height: 1.5; color: #1c1c1e;
-      text-align: left;
+      margin-top:0.75rem; line-height:1.5; color:#1c1c1e;
+      text-align:left;
     }
 
     /* Footer */
     footer {
-      position: relative; z-index: 2;
-      text-align: center; padding: 0.75rem 1rem;
-      font-size: 0.85rem; color: #666;
+      position:relative; z-index:2;
+      text-align:center; padding:0.75rem 1rem;
+      background:rgba(255,255,255,0.5);
+      border-top:1px solid rgba(0,0,0,0.1);
+      font-size:0.85rem; color:#8E8E93;
     }
     footer a {
-      color: #666; text-decoration: underline;
-      margin: 0 0.25rem;
-      -webkit-tap-highlight-color: transparent;
+      color:#8E8E93; text-decoration:underline; margin:0 0.25rem;
+      -webkit-tap-highlight-color:transparent;
     }
 
     /* Mobile tweaks */
-    @media(max-width: 400px) {
-      .card { max-width: 340px; }
-      h1 { font-size: 1.5rem; }
-      .subtitle { font-size: 0.95rem; }
+    @media(max-width:400px) {
+      .card { max-width:340px; }
+      h1 { font-size:1.5rem; }
+      .subtitle { font-size:0.95rem; }
       input[type="email"], button.notify {
-        font-size: 0.95rem;
+        font-size:0.95rem;
       }
     }
   </style>
@@ -170,12 +155,11 @@
 
   <div class="container">
     <div class="card" id="card">
-      <button class="close-btn" id="closeBtn" aria-label="Close">×</button>
       <div class="card-content">
-        <iframe 
-          src="https://lottie.host/embed/0344061d-7716-4584-a090-0b0ac781076b/SHQsS2zzYf.lottie" 
-          title="Loading Animation">
-        </iframe>
+        <iframe
+          src="https://lottie.host/embed/0344061d-7716-4584-a090-0b0ac781076b/SHQsS2zzYf.lottie"
+          title="Loading Animation"
+        ></iframe>
 
         <h1>LuxePixel Studios</h1>
         <p class="subtitle">Crafting Beautiful Digital Experiences</p>
@@ -209,11 +193,10 @@
     const card = document.getElementById('card');
     const notifyForm = document.getElementById('notify-form');
     const thankYou = document.getElementById('thankYouMessage');
-    const details = document.querySelector('details.learn-more');
+    const detailsEl = document.querySelector('details.learn-more');
 
-    details.addEventListener('toggle', () => {
-      card.classList.toggle('expanded', details.open);
-      document.getElementById('closeBtn').style.display = details.open ? 'block' : 'none';
+    detailsEl.addEventListener('toggle', () => {
+      card.classList.toggle('expanded', detailsEl.open);
     });
 
     notifyForm.addEventListener('submit', async e => {
@@ -227,7 +210,7 @@
         });
         if (res.ok) {
           notifyForm.style.display = 'none';
-          details.style.display = 'none';
+          detailsEl.style.display = 'none';
           thankYou.classList.add('active');
         } else {
           alert('Something went wrong. Please try again.');
