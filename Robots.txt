@@ -1,0 +1,5 @@
+<meta property="og:title" content="LuxePixel Studios – Coming Soon" />
+<meta property="og:description" content="Join LuxePixel Studios as we redefine design and digital creativity." />
+<meta property="og:url" content="https://luxepixelstudios.com/" />
+<meta property="og:image" content="https://luxepixelstudios.com/og-image.jpg" /> <!-- optional -->
+<meta name="twitter:card" content="summary_large_image" />
