@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="assets/css/policies.css" />
 
   <style>
-    /* Page-specific styles */
     body {
       font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", sans-serif;
       background: #f8f9fb;
@@ -18,64 +17,87 @@
       margin: 0 auto;
       padding: 2rem 1rem;
       line-height: 1.7;
+      position: relative;
     }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+    .close-btn {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #666;
     }
-    h2 {
-      margin-top: 2rem;
-      font-size: 1.3rem;
-    }
-    a {
-      color: #3a57e8;
-      text-decoration: underline;
-    }
-    footer {
-      text-align: center;
-      margin-top: 2rem;
-      font-size: 0.9rem;
-      color: #999;
-    }
+    h1 { font-size: 2rem; margin-bottom: 1rem; }
+    h2 { margin-top: 2rem; font-size: 1.3rem; }
+    p { margin-bottom: 1rem; }
+    ul { margin-left: 1.2rem; margin-bottom: 1rem; }
+    a { color: #3a57e8; text-decoration: underline; }
+    footer { text-align: center; margin-top: 2rem; font-size: 0.9rem; color: #999; }
   </style>
 </head>
 <body>
 
-  <!-- Close button (Apple-grey), returns to previous page -->
+  <!-- Close button -->
   <button class="close-btn" aria-label="Close" onclick="history.back()">×</button>
 
-  <div class="policy-wrapper">
-    <h1>Accessibility Statement</h1>
+  <h1>Accessibility Statement</h1>
 
-    <p>
-      LuxePixel Studios is committed to ensuring digital accessibility for all users, including those with disabilities. We are actively working to improve the accessibility of our website and ensure we meet relevant standards such as the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA.
-    </p>
+  <p>
+    LuxePixel Studios (“we”, “us”) is committed to ensuring that its digital services are accessible to all users, in accordance with the Equality Act 2010 and Web Content Accessibility Guidelines (WCAG) 2.1 Level AA.
+  </p>
 
-    <h2>What We’re Doing</h2>
+  <h2>Scope</h2>
+  <p>
+    This statement applies to all content published on <code>https://luxepixelstudios.com</code> as operated from the United Kingdom.
+  </p>
+
+  <h2>Standards Compliance</h2>
+  <p>
+    We have adopted WCAG 2.1 Level AA as our target standard for accessibility. Our ongoing programme includes:
+  </p>
+  <ul>
+    <li>Semantic HTML markup and ARIA roles to support assistive technologies</li>
+    <li>Consistent, keyboard-navigable interfaces throughout the site</li>
+    <li>Text alternatives for non-text content and meaningful link text</li>
+    <li>Colour contrast ratios meeting at least AA requirements</li>
+    <li>Responsive layouts for mobile, tablet, and desktop devices</li>
+  </ul>
+
+  <h2>Feedback Process</h2>
+  <p>
+    We welcome feedback on the accessibility of our site. To report an issue, please contact us at:
+  </p>
+  <ul>
+    <li><strong>Email:</strong> <a href="mailto:contact@luxepixelstudios.com">contact@luxepixelstudios.com</a></li>
+  </ul>
+  <p>
+    Upon receipt, we shall:
     <ul>
-      <li>Use clear and simple language where possible</li>
-      <li>Maintain consistent structure and navigation</li>
-      <li>Ensure compatibility with screen readers and assistive technologies</li>
-      <li>Offer a responsive design that works across all devices</li>
+      <li>Acknowledge your report within <strong>2 business days</strong></li>
+      <li>Assess and resolve confirmed issues within <strong>10 business days</strong>, or provide you with an alternative accessible format where immediate resolution is not feasible</li>
     </ul>
+  </p>
 
-    <h2>Feedback &amp; Contact</h2>
-    <p>
-      If you encounter any accessibility barriers while using our site, please let us know. We value your feedback and will do our best to resolve issues.
-    </p>
-    <p>
-      Contact: <a href="mailto:contact@luxepixelstudios.com">contact@luxepixelstudios.com</a>
-    </p>
+  <h2>Technical Specifications</h2>
+  <p>
+    Our site is built using modern web technologies, including HTML5, CSS3, and JavaScript. We employ automated and manual testing tools—such as WAVE, Axe, and screen-reader validation—to continuously monitor accessibility compliance.
+  </p>
 
-    <h2>Ongoing Commitment</h2>
-    <p>
-      As our site evolves, we will continue to improve accessibility wherever possible and welcome feedback from users to help guide these improvements.
-    </p>
+  <h2>Limitations &amp; Alternatives</h2>
+  <p>
+    Despite our efforts, some content may not yet conform fully to WCAG 2.1 AA. Where this occurs, we will provide an accessible alternative (e.g., text transcript for multimedia). Please contact us if you require assistance accessing any content.
+  </p>
 
-    <footer>
-      &copy; LuxePixel Studios 2025
-    </footer>
-  </div>
+  <h2>Review &amp; Maintenance</h2>
+  <p>
+    This statement is reviewed at least annually. The latest version is dated below.
+  </p>
 
+  <footer>
+    <p>Effective Date: 19 June 2025</p>
+    <p>&copy; LuxePixel Studios</p>
+  </footer>
 </body>
 </html>
