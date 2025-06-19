@@ -148,6 +148,18 @@
       background: #222;
     }
 
+    .thank-you {
+      display: none;
+      font-size: 1rem;
+      color: #1c1c1e;
+      margin-top: 1rem;
+      animation: fadeUp 1s ease forwards;
+    }
+
+    .thank-you.active {
+      display: block;
+    }
+
     @media (max-width: 480px) {
       .glass {
         padding: 2rem 1.2rem;
@@ -173,16 +185,46 @@
   <div class="ripple-overlay"></div>
 
   <div class="glass">
-    <!-- Lottie animation -->
     <iframe class="lottie" src="https://lottie.host/embed/0344061d-7716-4584-a090-0b0ac781076b/SHQsS2zzYf.lottie"></iframe>
 
     <h1>LuxePixel Studios</h1>
     <p>We’re almost live. Be the first to know when we launch.</p>
 
-    <form action="https://formspree.io/f/mgvyzqan" method="POST">
+    <form id="notify-form">
       <input type="email" name="email" placeholder="Enter your email" required />
       <button type="submit">Notify Me</button>
     </form>
+
+    <div class="thank-you" id="thankYouMessage">Thanks for signing up! 🎉</div>
   </div>
+
+  <script>
+    const form = document.getElementById("notify-form");
+    const thankYou = document.getElementById("thankYouMessage");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch("https://formspree.io/f/mgvyzqan", {
+          method: "POST",
+          headers: {
+            Accept: "application/json"
+          },
+          body: formData
+        });
+
+        if (response.ok) {
+          form.style.display = "none";
+          thankYou.classList.add("active");
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      } catch (error) {
+        alert("Error submitting form.");
+      }
+    });
+  </script>
 </body>
 </html>
