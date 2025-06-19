@@ -3,59 +3,98 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LuxePixel Studios – Under Construction</title>
+  <title>LuxePixel Studios – Coming Soon</title>
   <link rel="icon" href="https://img.icons8.com/?size=100&id=123335&format=png&color=000000" type="image/png" />
   <style>
-    :root {
-      color-scheme: light;
-    }
-
-    * {
+    html, body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", sans-serif;
+      overflow: hidden;
     }
 
     body {
-      background: #f2f2f7; /* Apple light grey */
-      color: #1c1c1e;
-      font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", sans-serif;
+      background: radial-gradient(circle at center, #f2f2f7, #e0e0e5);
+      position: relative;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
-      height: 100vh;
-      text-align: center;
-      animation: fadeIn 1.2s ease-out;
-    }
-
-    img.icon {
-      width: 96px;
-      height: 96px;
-      margin-bottom: 1.5rem;
-      filter: drop-shadow(0 0 10px rgba(0,0,0,0.1));
-    }
-
-    h1 {
-      font-size: 2.4rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.01em;
+      align-items: center;
       color: #1c1c1e;
     }
 
-    p {
-      font-size: 1.15rem;
+    /* Particle background */
+    .particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: drift 30s linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes drift {
+      0% { background-position: 0 0; }
+      100% { background-position: 100px 100px; }
+    }
+
+    .glass-box {
+      position: relative;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 24px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      padding: 3rem 2rem;
+      text-align: center;
+      width: 90%;
+      max-width: 420px;
+      animation: popIn 1s ease-out forwards;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.9); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .glass-box img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 1.5rem;
+      animation: float 3.5s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .glass-box h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .glass-box p {
+      font-size: 1.1rem;
       color: #3a3a3c;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1.2s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .spinner {
-      margin-top: 2rem;
-      width: 24px;
-      height: 24px;
+      width: 32px;
+      height: 32px;
       border: 3px solid rgba(0, 0, 0, 0.1);
-      border-top: 3px solid #000;
+      border-top: 3px solid #1c1c1e;
       border-radius: 50%;
+      margin: 0 auto;
       animation: spin 1s linear infinite;
     }
 
@@ -63,16 +102,33 @@
       to { transform: rotate(360deg); }
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
+    .reflection {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.1), transparent 70%);
+      mix-blend-mode: screen;
+      pointer-events: none;
+      animation: shimmer 8s infinite;
+      z-index: 5;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(10deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(10deg); }
     }
   </style>
 </head>
 <body>
-  <img src="https://img.icons8.com/?size=100&id=123335&format=png&color=000000" alt="LuxePixel Icon" class="icon" />
-  <h1>LuxePixel Studios</h1>
-  <p>Our website is under construction.<br />Please check back soon.</p>
-  <div class="spinner" aria-hidden="true"></div>
+  <div class="particles"></div>
+  <div class="reflection"></div>
+  <div class="glass-box">
+    <img src="https://img.icons8.com/?size=100&id=123335&format=png&color=000000" alt="LuxePixel Icon" />
+    <h1>LuxePixel Studios</h1>
+    <p>Our new website is almost ready.<br>You're going to love it.</p>
+    <div class="spinner" aria-hidden="true"></div>
+  </div>
 </body>
 </html>
