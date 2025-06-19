@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>LuxePixel Studios – Coming Soon</title>
-
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
@@ -132,27 +131,12 @@
     .thank-you.active {
       display: block;
     }
-    /* Confetti */
-    .confetti {
-      pointer-events: none;
+    /* Confetti canvas is fullscreen */
+    #confetti-canvas {
       position: fixed;
-      left: 0; top: 0;
-      width: 100vw; height: 100vh;
-      z-index: 1000;
-      overflow: visible;
-    }
-    .confetti-piece {
-      position: absolute;
-      width: 10px; height: 18px;
-      border-radius: 4px 4px 18px 18px;
-      opacity: 0.86;
-      will-change: transform, opacity;
-      animation: confettiBurst 1.6s ease-out forwards;
-    }
-    @keyframes confettiBurst {
-      0%   { opacity:1; transform: translateY(0) scale(1) rotate(0deg);}
-      80%  { opacity: .93;}
-      100% { opacity:.35; transform: translateY(380px) scale(.7) rotate(350deg);}
+      pointer-events: none;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: 99;
     }
     @media (max-width: 480px) {
       .glass {
@@ -167,7 +151,7 @@
 <body>
   <div class="bg-image"></div>
   <div class="ripple-overlay"></div>
-
+  <canvas id="confetti-canvas"></canvas>
   <div class="glass">
     <iframe class="lottie" src="https://lottie.host/embed/0344061d-7716-4584-a090-0b0ac781076b/SHQsS2zzYf.lottie"></iframe>
     <h1>LuxePixel Studios</h1>
@@ -178,30 +162,81 @@
     </form>
     <div class="thank-you" id="thankYouMessage">Thanks for signing up! 🎉</div>
   </div>
-  <div class="confetti" id="confetti"></div>
   <script>
-    // Gorgeous multi-colour confetti burst
-    function launchConfetti() {
-      const confetti = document.getElementById("confetti");
-      confetti.innerHTML = "";
-      const colors = [
-        "#FF6F91", "#F9D423", "#00B8A9", "#6A89CC", "#38ada9", "#E17055",
-        "#f7b731", "#FDA7DF", "#686de0", "#303952", "#FD7272", "#3ae374"
-      ];
-      for (let i = 0; i < 44; i++) {
-        const piece = document.createElement("div");
-        piece.className = "confetti-piece";
-        // Random position in the upper center of viewport
-        piece.style.left = (45 + Math.random()*10) + "vw";
-        piece.style.top = (15 + Math.random()*5) + "vh";
-        piece.style.background = colors[Math.floor(Math.random()*colors.length)];
-        piece.style.transform = `rotate(${Math.random()*90-45}deg)`;
-        piece.style.animationDelay = (Math.random()*0.32) + "s";
-        confetti.appendChild(piece);
-        setTimeout(()=>piece.remove(), 2100);
+    // --- Realistic Confetti Burst! ---
+    const colors = [
+      "#FF6F91", "#F9D423", "#00B8A9", "#6A89CC", "#38ada9", "#E17055",
+      "#f7b731", "#FDA7DF", "#686de0", "#303952", "#FD7272", "#3ae374"
+    ];
+    const shapes = [
+      {curve: true, blur: 16}, // Blurred, curved
+      {curve: true, blur: 0},  // Sharp, curved
+      {curve: false, blur: 8}, // Blurred, straight
+      {curve: false, blur: 0}  // Sharp, straight
+    ];
+
+    function drawConfettiPiece(ctx, x, y, w, h, color, angle, blur, curve) {
+      ctx.save();
+      ctx.globalAlpha = 0.8;
+      ctx.translate(x, y);
+      ctx.rotate(angle);
+      if (blur) ctx.shadowBlur = blur, ctx.shadowColor = color;
+      ctx.beginPath();
+      if (curve) {
+        ctx.moveTo(0, 0);
+        ctx.bezierCurveTo(w * 0.7, -h * 0.6, w * 0.8, h * 1.2, w, h);
+        ctx.lineTo(w, h + 5);
+        ctx.bezierCurveTo(w * 0.4, h + 12, -w * 0.5, h * 0.7, 0, 0);
+      } else {
+        ctx.ellipse(w/2, h/2, w/2, h/2, 0, 0, 2*Math.PI);
       }
+      ctx.closePath();
+      ctx.fillStyle = color;
+      ctx.fill();
+      ctx.restore();
     }
-    // Thank you + confetti on form submit
+
+    function launchRealisticConfetti() {
+      const canvas = document.getElementById('confetti-canvas');
+      const ctx = canvas.getContext('2d');
+      const W = window.innerWidth, H = window.innerHeight;
+      canvas.width = W;
+      canvas.height = H;
+      const confetti = [];
+      for (let i = 0; i < 48; i++) {
+        let shape = shapes[Math.floor(Math.random() * shapes.length)];
+        confetti.push({
+          x: (W/2) + (Math.random()-0.5)*W*0.45,
+          y: -Math.random() * 120,
+          w: 20 + Math.random() * 20,
+          h: 7 + Math.random() * 10,
+          angle: Math.random() * Math.PI * 2,
+          speed: 2 + Math.random() * 3,
+          sway: Math.random() * 2 + 0.5,
+          drift: Math.random() * 2,
+          color: colors[Math.floor(Math.random()*colors.length)],
+          curve: shape.curve,
+          blur: shape.blur,
+          rotSpeed: (Math.random() - 0.5) * 0.09
+        });
+      }
+      let frame = 0;
+      function animate() {
+        ctx.clearRect(0, 0, W, H);
+        confetti.forEach(piece => {
+          piece.x += Math.sin(frame/12 + piece.sway) * piece.sway + piece.drift;
+          piece.y += piece.speed;
+          piece.angle += piece.rotSpeed;
+          drawConfettiPiece(ctx, piece.x, piece.y, piece.w, piece.h, piece.color, piece.angle, piece.blur, piece.curve);
+        });
+        frame++;
+        if (frame < 90) requestAnimationFrame(animate);
+        else setTimeout(() => ctx.clearRect(0,0,W,H), 1800);
+      }
+      animate();
+    }
+
+    // --- Form submit and confetti launch ---
     const form = document.getElementById("notify-form");
     const thankYou = document.getElementById("thankYouMessage");
     form.addEventListener("submit", async (e) => {
@@ -216,7 +251,7 @@
         if (response.ok) {
           form.style.display = "none";
           thankYou.classList.add("active");
-          launchConfetti();
+          launchRealisticConfetti();
         } else {
           alert("Something went wrong. Please try again.");
         }
