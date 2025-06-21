@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LuxePixel Studios – Premium Web Design &amp; Creative Innovation</title>
+  <title>LuxePixel Studios – Premium Web Design & Creative Innovation</title>
   <meta name="description" content="LuxePixel Studios is almost live. Be the first to experience premium design, digital creativity, and innovation." />
   <link rel="canonical" href="https://luxepixelstudios.com/" />
 
-  <!-- Google Analytics (gtag.js) -->
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0VTJTGHLPF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -16,92 +16,241 @@
     gtag('config', 'G-0VTJTGHLPF');
   </script>
 
-  <!-- Organization JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Organization",
-    "name":"LuxePixel Studios",
-    "url":"https://luxepixelstudios.com",
-    "logo":"https://luxepixelstudios.com/my-favicon/favicon-96x96.png",
-    "contactPoint": {
-      "@type":"ContactPoint",
-      "email":"contact@luxepixelstudios.com",
-      "contactType":"customer service",
-      "availableLanguage":"en"
-    }
-  }
-  </script>
+  <!-- SVG Filter for Glass Distortion -->
+  <svg style="display: none">
+    <filter id="glass-distortion">
+      <feTurbulence type="turbulence" baseFrequency="0.008" numOctaves="2" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="77" />
+    </filter>
+  </svg>
 
   <style>
-    /* Reset & Base */
-    *{margin:0;padding:0;box-sizing:border-box}
-    html,body{height:100%;width:100%;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;background:#f2f2f7;color:#1c1c1e;overflow-x:hidden}
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      width: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+      overflow-x: hidden;
+    }
 
-    /* Background & Ripple */
-    .bg-image{position:fixed;top:0;left:0;width:100%;height:100%;background:url("https://i.imgur.com/qb6HJXqm.jpg")center/cover no-repeat;filter:blur(20px);z-index:0}
-    .ripple-overlay{position:fixed;top:0;left:0;width:200%;height:200%;background:radial-gradient(circle,rgba(255,255,255,0.04)1px,transparent 1px);background-size:50px 50px;animation:ripple 30s linear infinite;opacity:0.4;z-index:1}
-    @keyframes ripple{from{transform:translate(0)}to{transform:translate(100px,100px)}}
+    .bg-image {
+      position: fixed;
+      inset: 0;
+      background: url("https://i.imgur.com/4hKva6o.jpg") center/cover no-repeat;
+      filter: blur(20px);
+      z-index: 0;
+    }
 
-    /* Card */
-    .container{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;height:100vh;padding:1rem}
-    .card{background:rgba(255,255,255,0.6);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-radius:24px;box-shadow:0 8px 32px rgba(0,0,0,0.12);width:100%;max-width:360px;overflow:hidden;transition:max-height .5s ease,padding-bottom .5s ease;max-height:900px;padding-bottom:1rem}
-    .card-content{padding:2rem 1.5rem 0;text-align:center}
+    .ripple-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: ripple 30s linear infinite;
+      opacity: 0.4;
+      z-index: 1;
+    }
 
-    /* Lottie */
-    iframe{width:80px;height:80px;margin-bottom:1rem;border:none;background:transparent}
+    @keyframes ripple {
+      from { transform: translate(0); }
+      to { transform: translate(100px, 100px); }
+    }
 
-    /* Headings */
-    h1{font-size:1.75rem;margin-bottom:.25rem;opacity:0;animation:fadeUp 1s ease forwards;animation-delay:.3s}
-    .subtitle{font-size:1rem;color:#8E8E93;margin-bottom:1.25rem;opacity:0;animation:fadeUp 1s ease forwards;animation-delay:.6s}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    .container {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 1rem;
+    }
 
-    /* Form */
-    form{display:flex;flex-direction:column;gap:.75rem;opacity:0;animation:fadeUp 1s ease forwards;animation-delay:.9s}
-    input[type="email"]{padding:.75rem 1rem;border-radius:20px;border:1px solid rgba(0,0,0,0.1);background:rgba(255,255,255,0.8);font-size:1rem;color:#1c1c1e}
-    button.notify{padding:.75rem 1rem;border:none;border-radius:20px;background:#000;color:#fff;font-size:1rem;cursor:pointer;transition:opacity .2s}
-    button.notify:hover{opacity:.85}
-    .thank-you{display:none;margin-top:1rem;color:#1c1c1e}
-    .thank-you.active{display:block}
+    .glass-card {
+      --bg-color: rgba(255, 255, 255, 0.25);
+      --highlight: rgba(255, 255, 255, 0.75);
+      --text: #ffffff;
 
-    /* Learn more */
-    details.learn-more{margin-top:1.25rem;font-size:.95rem;color:#8E8E93}
-    details.learn-more summary{list-style:none;cursor:pointer;display:inline-block;text-decoration:underline;text-underline-offset:2px}
-    details.learn-more summary::-webkit-details-marker{display:none}
-    details.learn-more summary::before{content:"›";display:inline-block;transform:rotate(90deg);margin-right:.5ch;transition:transform .2s;color:#8E8E93}
-    details.learn-more[open] summary::before{transform:rotate(270deg)}
-    details.learn-more .more-text{margin-top:.75rem;line-height:1.5;color:#1c1c1e;text-align:left}
+      position: relative;
+      width: 300px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+    }
 
-    /* Footer Links */
-    footer{position:fixed;bottom:0;left:0;width:100%;text-align:center;padding:.75rem 1rem;background:rgba(255,255,255,0.5);border-top:1px solid rgba(0,0,0,0.1);font-size:.85rem;color:#8E8E93;z-index:2}
-    footer a{color:#8E8E93;text-decoration:underline;margin:0 .25rem}
+    .glass-filter,
+    .glass-overlay,
+    .glass-specular {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+    }
 
-    /* Responsive */
-    @media(max-width:400px){.card{max-width:340px}h1{font-size:1.5rem}.subtitle{font-size:.95rem}input,button.notify{font-size:.95rem}}
+    .glass-filter {
+      z-index: 1;
+      backdrop-filter: blur(4px);
+      filter: url(#glass-distortion) saturate(120%) brightness(1.15);
+    }
+
+    .glass-overlay {
+      z-index: 2;
+      background: var(--bg-color);
+    }
+
+    .glass-specular {
+      z-index: 3;
+      box-shadow: inset 1px 1px 1px var(--highlight);
+    }
+
+    .glass-content {
+      position: relative;
+      z-index: 4;
+      padding: 20px;
+      color: var(--text);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      margin-bottom: .25rem;
+      color: rgba(0, 0, 0, 0.8); /* darker heading */
+      opacity: 0;
+      animation: fadeUp 1s ease forwards;
+      animation-delay: .3s;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: #8E8E93;
+      margin-bottom: 1.25rem;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards;
+      animation-delay: .6s;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    input[type="email"] {
+      padding: 10px 14px;
+      margin-top: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    .glass-button {
+      --bg-color: rgba(255, 255, 255, 0.25);
+      --highlight: rgba(255, 255, 255, 0.75);
+      --text: #ffffff;
+
+      position: relative;
+      padding: 10px 16px;
+      margin-top: 1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      overflow: hidden;
+      background: transparent;
+      transition: transform 0.2s ease;
+      outline: none;
+    }
+
+    .glass-button:hover { transform: scale(1.05); }
+    .glass-button:active { transform: scale(0.95); }
+
+    .glass-button .glass-filter,
+    .glass-button .glass-overlay,
+    .glass-button .glass-specular {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+    }
+
+    .glass-button .glass-filter {
+      z-index: 1;
+      backdrop-filter: blur(4px);
+      filter: url(#glass-distortion) saturate(120%) brightness(1.15);
+    }
+
+    .glass-button .glass-overlay {
+      z-index: 2;
+      background: var(--bg-color);
+    }
+
+    .glass-button .glass-specular {
+      z-index: 3;
+      box-shadow: inset 1px 1px 1px var(--highlight);
+    }
+
+    .glass-button .glass-content {
+      position: relative;
+      z-index: 4;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 15px;
+    }
+
+    .thank-you {
+      margin-top: 1rem;
+      display: none;
+      color: white;
+    }
+
+    .thank-you.active {
+      display: block;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      padding: .75rem 1rem;
+      background: rgba(255, 255, 255, 0.5);
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      font-size: .85rem;
+      color: #8E8E93;
+      z-index: 5;
+    }
+
+    footer a {
+      color: #8E8E93;
+      text-decoration: underline;
+      margin: 0 .25rem;
+    }
   </style>
 </head>
 <body>
   <div class="bg-image"></div>
   <div class="ripple-overlay"></div>
+
   <div class="container">
-    <div class="card" id="card">
-      <div class="card-content">
-        <iframe src="https://lottie.host/embed/0344061d-7716-4584-a090-0b0ac781076b/SHQsS2zzYf.lottie" title="Loading"></iframe>
+    <div class="glass-card">
+      <div class="glass-filter"></div>
+      <div class="glass-overlay"></div>
+      <div class="glass-specular"></div>
+      <div class="glass-content">
         <h1>LuxePixel Studios</h1>
         <p class="subtitle">Crafting Beautiful Digital Experiences</p>
         <form id="notify-form">
           <input type="email" name="email" placeholder="Enter your email" required />
-          <button type="submit" class="notify">Notify Me</button>
+          <button type="submit" class="glass-button">
+            <div class="glass-filter"></div>
+            <div class="glass-overlay"></div>
+            <div class="glass-specular"></div>
+            <div class="glass-content"><span>Notify Me</span></div>
+          </button>
         </form>
         <div class="thank-you" id="thankYouMessage">Thanks for signing up! 🎉</div>
-        <details class="learn-more">
-          <summary>Learn more</summary>
-          <div class="more-text">
-            <p>
-              LuxePixel Studios is a UK-based creative studio specialising in web design, branding &amp; digital innovation. Our site is under construction, but our mission is simple: deliver accessible, elegant digital experiences for brands who demand the best. Join our launch list to be first in line.
-            </p>
-          </div>
-        </details>
       </div>
     </div>
   </div>
@@ -114,16 +263,17 @@
   </footer>
 
   <script>
-    // form submission
     document.getElementById('notify-form').addEventListener('submit', async e => {
       e.preventDefault();
       const form = e.target, data = new FormData(form);
       try {
         const res = await fetch('https://formspree.io/f/mgvyzqan', {
-          method:'POST', headers:{Accept:'application/json'}, body:data
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: data
         });
-        if(res.ok){
-          form.style.display='none';
+        if (res.ok) {
+          form.style.display = 'none';
           document.getElementById('thankYouMessage').classList.add('active');
         } else alert('Something went wrong');
       } catch {
